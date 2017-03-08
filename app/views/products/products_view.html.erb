@@ -1,0 +1,5 @@
+<h1>All products</h1>
+<p><%@products.each do |product|%></p>
+<img class="products" src=<%= product.image%>><br>
+<%= "#{product.name} costs: $#{product.price}" %>
+<%end%>
