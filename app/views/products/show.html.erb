@@ -1,0 +1,7 @@
+<a href="/products">back to all products</a>
+<p><img class="show-page-img" src=<%= @product.image %>></p>
+<a href="/product/<%=@product.id%>/edit">Edit product</a>
+<%= form_tag "/products/#{@product.id}", method: :delete do %>
+  <input type="submit" value="delete product">
+<% end %>
+<%= link_to "delete product", "/products/#{@product.id}", method: :delete %>

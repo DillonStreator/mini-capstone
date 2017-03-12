@@ -1,0 +1,18 @@
+<a href="/products">back to all products</a>
+<h1>Create new product</h1>
+
+<%= form_tag "/products/create", method: :post do %>
+<div>
+  Product name: <input type="text" class="form-control" name="product_name">
+</div>
+<div>
+  Prouduct price: <input type="text" class="form-control" name="product_price">  
+</div>
+<div>
+  Product image(url): <input type="text" class="form-control" name="product_image">  
+</div>
+<div>
+  Product description <input type="text" class="form-control" name="product_description">
+</div>
+  <input type="submit" class="btn btn-default" value="create product">
+<% end %>

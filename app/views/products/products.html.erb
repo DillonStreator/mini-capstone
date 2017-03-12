@@ -17,9 +17,9 @@
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
+            <li><a href="/products/new">create new prodcut</a></li>
             <li><a href="#">Another action</a></li>
             <li><a href="#">Something else here</a></li>
             <li role="separator" class="divider"></li>
@@ -51,12 +51,22 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
 <div class="products_container">
   <h1>All products</h1>
-  <p><%@products.each do |product|%></p>
-  <img class="products" src=<%= product.image%>><br>
-  <%= "#{product.name} costs: $#{product.price}" %>
-  <p class="line_break">-----------------------</p>
+  <%@products.each do |product|%>
+  <div class="product_container">
+    <a href="/show/<%= product.id %>-<%=product.name%>">
+      <img class="products" src=<%= product.image%> name=<%= product.id%>>
+    </a>
+    <br>
+    <%= "#{product.name} cost: $#{product.price}" %>
+    <p class="line_break">-----------------------</p>
+  </div>
   <%end%>
 </div>
-
+<div> 
+  <%= form_tag "/products/new", method: :get do %>
+    <input class="new_product_button" type="submit" value="create new product">
+  <% end %>
+</div>

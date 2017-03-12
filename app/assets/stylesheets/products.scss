@@ -5,6 +5,12 @@
   height: 100px;
   width: 100px;
 }
+.products:hover{
+  height:250px;
+  width:250px;
+  border:solid;
+  border-width:3px;
+}
 .line_break {
   padding:0px;
   margin:0px;
@@ -12,4 +18,23 @@
 .products_container{
   margin-left:10px;
   margin-right:10px;
+
+}
+.show-page-img {
+  width:500px;
+  height:500px;
+  border:solid;
+  border-width:3px;
+}
+
+.new_product_button {
+  height: 75px;
+  width: 500px;
+  margin: 10px;
+  border: solid;
+  border-width: 3px;
+}
+.prouct_container{
+  border: solid;
+  border-width: 3px;
 }
