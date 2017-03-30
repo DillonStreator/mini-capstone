@@ -1,40 +1,49 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.products {
-  height: 100px;
-  width: 100px;
-}
-.products:hover{
-  height:250px;
-  width:250px;
-  border:solid;
-  border-width:3px;
-}
-.line_break {
-  padding:0px;
-  margin:0px;
-}
-.products_container{
-  margin-left:10px;
-  margin-right:10px;
 
+.btn-default {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.product-image {
+  width:100%;
+  height: 300px;
+}
+.show .well{
+  min-height: 200px;
+}
+.well{
+  min-height: 400px;
+  background: rgba(255,255,255,0.35);
+}
+.show-product img {
+  height:250px;
+  width: 250px;
+  background-color: white;
+  float: left;
+  margin-right: 10px;
+}
+.show-info {
+  float: left;
+}
+.show-links {
+  clear: left;
+  padding-top: 10px;
+}
+.show-name {
+  text-decoration: underline;
+  font-size: 125px;
+  text-align: center;
+}
+
+.discount-item {
+  color: red;
 }
 .show-page-img {
-  width:500px;
-  height:500px;
-  border:solid;
-  border-width:3px;
+  width: 100%;
 }
-
-.new_product_button {
-  height: 75px;
-  width: 500px;
-  margin: 10px;
-  border: solid;
-  border-width: 3px;
-}
-.prouct_container{
-  border: solid;
-  border-width: 3px;
+.sign-in-n-up {
+  width: 250px;
 }

@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  font-family: Optima,Segoe,"Segoe UI",Candara,Calibri,Arial,sans-serif;
+  margin-left: 25px;
+  margin-right: 25px;
+  background-image: url('subtle_white_mini_waves.png');
+}
+.navbar-brand {
+  font-family: 'Lobster Two', cursive;
+    font-size: 2em;
+}

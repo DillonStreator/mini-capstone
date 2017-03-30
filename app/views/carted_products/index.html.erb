@@ -1,0 +1,15 @@
+<h1>My Cart</h1>
+<% @carted_products.each do |carted_product| %>
+  <div class="cart-index">
+    <div class="well">
+      <img style="height:20px;" src=<%= carted_product.product.images[0].url %>>
+      <%= carted_product.product.name %>,
+      Quantity: <%= carted_product.quantity %>,
+      Price: $<%= carted_product.product.price %>
+      <%= link_to "Delete", "/carted_products/#{carted_product.id}", method: :delete %>
+    </div>
+  </div>
+<% end %>
+<%= form_tag "/orders", method: :post do %>
+  <input class="btn btn-default" type="submit" value="BUY NOW!">
+<% end %>

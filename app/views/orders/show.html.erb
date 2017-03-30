@@ -1,0 +1,16 @@
+<h1>Order#: <%= @order.id %></h1>
+<p>Ordered By: <%= @order.user.email %></p>
+<p>Time: <%= @order.created_at.strftime("%I:%M%p -- %m/%d/%Y") %></p>
+<div class="col-md-3">
+  <div class="well">
+    <% @carted_products.each do |carted_product| %>
+      <img style="height:25px;width:25px;" src=<%= carted_product.product.images[0].url %>>
+      <%= carted_product.product.name %>
+      Quantity: <%= carted_product.quantity %><br>
+    <% end %><br>
+    Subtotal: $<%= @order.subtotal %><br>
+    Tax: $<%= @order.tax %><br>
+    -------------<br>
+    Total: $<%= @order.total %>
+  </div>
+</div>

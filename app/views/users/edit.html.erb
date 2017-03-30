@@ -1,0 +1,14 @@
+<h1>Edit <%= @user.name %>'s profile</h1>
+<%= form_tag "/users/#{@user.id}", method: :patch do  %>
+  <div class="sign-in-n-up">
+    Name:
+    <input class="form-control" type="text" name="name" value="<%= @user.name %>">
+  </div>
+
+  <div class="sign-in-n-up">
+    Email:
+    <input class="form-control" type="email" name="email" value="<%= @user.email %>">
+  </div>
+
+  <input class="btn btn-default" type="submit" value="Submit">
+<% end %>

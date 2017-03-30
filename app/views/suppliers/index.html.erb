@@ -1,0 +1,7 @@
+<h1 style="text-decoration: underline;">Suppliers</h1>
+<% @suppliers.each do |supplier| %>
+  <h3><%= supplier.name %></h3>
+  <%= link_to "Edit", "/suppliers/#{supplier.id}/edit", method: :get %><br>
+  <%= link_to "Delete", "/suppliers/#{supplier.id}", method: :delete %><br>
+  <p>-----------------</p>
+<% end %>

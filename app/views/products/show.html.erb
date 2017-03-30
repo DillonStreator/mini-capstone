@@ -1,7 +1,53 @@
-<a href="/products">back to all products</a>
-<p><img class="show-page-img" src=<%= @product.image %>></p>
-<a href="/product/<%=@product.id%>/edit">Edit product</a>
-<%= form_tag "/products/#{@product.id}", method: :delete do %>
-  <input type="submit" value="delete product">
+<div class="show">
+  <div class="col-md-6">
+    <div class="well">
+    <h1 class="show-name"><%= "#{@product.name}" %></h1>
+    </div>
+  </div>
+</div>
+<div class="show"> 
+  <div class="col-md-6">
+    <div class="well" >
+      <sub>supplied by: <%= @product.supplier.name %></sub><br>
+      <sub>Categories: </sub>
+      <% @product.categories.each do |category| %>
+        <sub><%= category.name %>  </sub>
+      <% end %>
+      <% if @product.discount? %>
+        <p class="discount-item">Discount item!!</p>
+      <% else %>
+        <p>Everyday value!</p>
+      <% end %>
+      <%= "cost: $#{@product.price}" %><br>
+      <%= "tax: $#{@product.tax}" %><br>
+      <%= "total: $#{@product.total}" %><br>
+      <a href="/products/new?new_type=image&id=<%=@product.id%>">Add image</a><br>
+      <a href="/products/<%=@product.id%>/edit?edit_type=product">Edit product</a><br>
+      <%= link_to "delete product", "/carted/#{@product.id}?destroy_type=product", method: :delete %>
+      <div class="qty-input" style="width:75px; float:right;">
+        <%= form_tag "/carted_products/#{@product.id}", method: :post do %>
+          Quantity: <input class="form-control" type="text" name="quantity">
+          <input type="hidden" name="product_id" value=<%= @product.id %>>
+          <input class="btn btn-default" type="submit" value="Add to cart">
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+<% @product.images.each_slice(3) do |three_images| %>
+  <div class="row">
+    <% three_images.each do |image|%>
+    <div class="show-image">
+      <div class="col-md-4">
+        <div class="well">
+          <img class="show-page-img" src=<%= image.url %>>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 <% end %>
-<%= link_to "delete product", "/products/#{@product.id}", method: :delete %>
+
+<div class="show-links">
+</div>

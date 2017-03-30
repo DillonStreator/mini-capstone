@@ -1,0 +1,18 @@
+<h1>All my orders:</h1>
+<% @orders.each_slice(4) do |three_orders| %> 
+  <div class="row">
+    <% three_orders.each do |order| %>
+      <div class="col-md-3">
+        <div class="well">
+          <sub>Time: <%= order.created_at.strftime("%I:%M%p -- %m/%d/%Y") %></sub>
+          <img class="order-image" src=<%= order.product.images[0].url %>>
+          <p>Product: <%= order.product.name %> x <%= order.quantity %>pcs</p>
+          <p>Subtotal: <%= order.subtotal %></p>
+          <p>Tax: <%= order.tax %></p>
+          <p>----------</p>
+          <b>Total: <%= order.total %></b><br>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
