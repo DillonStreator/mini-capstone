@@ -32,4 +32,18 @@ class Product < ApplicationRecord
     return products
   end
 
+#added this code to HTML in order to get <a> tags around category names.
+  def list_categories
+    friendly_categories = []
+    self.categories.each do |category|
+      if category == categories[(categories.size - 2)]
+        friendly_categories << "#{category.name} and "
+      elsif category == categories[(categories.size - 1)]
+        friendly_categories << "#{category.name}"
+      else
+        friendly_categories << "#{category.name}, "
+      end
+    end
+    friendly_categories.join('')
+  end
 end

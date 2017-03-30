@@ -1,50 +1,68 @@
-<div class="show">
+<div class="row">
   <div class="col-md-6">
-    <div class="well">
+    <div style="min-height: 250px;" class="well">
     <h1 class="show-name"><%= "#{@product.name}" %></h1>
     </div>
   </div>
-</div>
-<div class="show"> 
   <div class="col-md-6">
-    <div class="well" >
-      <sub>supplied by: <%= @product.supplier.name %></sub><br>
-      <sub>Categories: </sub>
-      <% @product.categories.each do |category| %>
-        <sub><%= category.name %>  </sub>
-      <% end %>
-      <% if @product.discount? %>
-        <p class="discount-item">Discount item!!</p>
-      <% else %>
-        <p>Everyday value!</p>
-      <% end %>
-      <%= "cost: $#{@product.price}" %><br>
-      <%= "tax: $#{@product.tax}" %><br>
-      <%= "total: $#{@product.total}" %><br>
-      <a href="/products/new?new_type=image&id=<%=@product.id%>">Add image</a><br>
-      <a href="/products/<%=@product.id%>/edit?edit_type=product">Edit product</a><br>
-      <%= link_to "delete product", "/carted/#{@product.id}?destroy_type=product", method: :delete %>
-      <div class="qty-input" style="width:75px; float:right;">
-        <%= form_tag "/carted_products/#{@product.id}", method: :post do %>
-          Quantity: <input class="form-control" type="text" name="quantity">
-          <input type="hidden" name="product_id" value=<%= @product.id %>>
-          <input class="btn btn-default" type="submit" value="Add to cart">
-        <% end %>
+    <div style="min-height: 250px;" class="well">
+      <div class="col-md-6">
+        <div style="float:left; width:100%; min-height:100px;" class="well">
+          <% if @product.discount? %>
+            <p class="discount-item">Discount item!!</p>
+          <% else %>
+            <p>Everyday value!</p>
+          <% end %>
+          <%= "cost: $#{@product.price}" %><br>
+          <%= "tax: $#{@product.tax}" %><br>
+          <%= "total: $#{@product.total}" %><br>
+          <sub><b>Supplied by: </b><%= @product.supplier.name %></sub><br>
+          <sub><b>Categories: </b></sub>
+          <% @product.categories.each do |category| %>
+            <sub><a href="#"><%= category.name %></a></sub>
+          <% end %><br>
+          <sub><b>Categories: </b></sub>
+          <% @product.categories.each do |category| %>
+            <% if category == @product.categories[(@product.categories.size - 2)] %>
+              <sub><a href="#"><%= "#{category.name} " %></a> and </sub>
+            <% elsif category == @product.categories[(@product.categories.size - 1)] %>
+              <sub><a href="#"><%= "#{category.name} " %></a></sub>
+            <% else %>
+              <sub><a href="#"><%= "#{category.name} " %></a>, </sub>
+            <% end %>
+          <% end %><br>
+          <sub><b>Categories: </b><%= @product.list_categories %></sub>
+        </div>
       </div>
-
-    </div>
-  </div>
-</div>
-<% @product.images.each_slice(3) do |three_images| %>
-  <div class="row">
-    <% three_images.each do |image|%>
-    <div class="show-image">
-      <div class="col-md-4">
-        <div class="well">
-          <img class="show-page-img" src=<%= image.url %>>
+      <div class="col-md-6">
+        <div style="float:right; width: 100%; min-height:100px;" class="well">
+          <% if current_user.admin == 1 %>
+            <a class="btn btn-default" href="/products/new?new_type=image&id=<%=@product.id%>">Add image</a><br>
+            <a class="btn btn-default" href="/products/<%=@product.id%>/edit?edit_type=product">Edit product</a><br>
+            <%= form_tag "/products/#{@product.id}", method: :delete do %>
+              <input class="btn btn-default" type="submit" value="Delete Product">
+            <% end %>
+          <% else %>
+            Quantity:
+            <%= form_tag "/carted_products/#{@product.id}", method: :post do %>
+              <input style="width:50%;" class="form-control" type="text" name="quantity">
+              <input type="hidden" name="product_id" value=<%= @product.id %>>
+              <input style="width:50%;" class="btn btn-default" type="submit" value="Add to cart">
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<% @product.images.each_slice(4) do |three_images| %>
+  <div class="row">
+    <% three_images.each do |image|%>
+      <div class="col-md-3">
+        <div style="min-height: 50px;" class="well">
+          <img class="show-page-img" src=<%= image.url %>>
+        </div>
+      </div>
     <% end %>
   </div>
 <% end %>

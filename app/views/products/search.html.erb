@@ -10,7 +10,7 @@
       <div class="well">
         <h1><%= "#{product.name}" %></h1>
         <a href="/show/<%= product.id %>">
-          <img class="product-image" src=<%= product.image%> name=<%= product.id%>>
+          <img class="product-image" src=<%= product.images[0].url %> name=<%= product.id%>>
         </a>
         <p><%= product.description %></p>
       </div>
