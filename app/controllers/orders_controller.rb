@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = Order.where(user_id: current_user.id)
+    @orders = Order.where(user_id: current_user.id).order(created_at: 'desc')
 
     render "index.html.erb"
   end
@@ -24,11 +24,13 @@ class OrdersController < ApplicationController
     )
     order.save
 
-    carted_products.each do |carted_product|
-      carted_product.status = "purchased"
-      carted_product.order_id = order.id
-      carted_product.save
-    end
+    # carted_products.each do |carted_product|
+    #   carted_product.status = "purchased"
+    #   carted_product.order_id = order.id
+    #   carted_product.save
+    # end
+    carted_products.update_all(status: "purchased", order_id: order.id) #same code as loop above, but only requests from database once rather than once for every 'carted_product'
+
     flash[:success] = "Ordered successfully!"
     redirect_to "/orders/#{order.id}"
   end

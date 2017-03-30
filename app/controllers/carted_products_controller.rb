@@ -9,7 +9,6 @@ class CartedProductsController < ApplicationController
   end
 
   def create
-    carted_products = CartedProduct.where("status = ? AND user_id = ?", "carted", current_user.id)
     if current_user
       if CartedProduct.find_by(status: 'carted', user_id: current_user.id, product_id: params[:product_id])
         carted_product = CartedProduct.find_by(status: 'carted', user_id: current_user.id, product_id: params[:product_id])
