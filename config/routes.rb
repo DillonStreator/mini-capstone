@@ -39,4 +39,7 @@ Rails.application.routes.draw do
   post "/carted_products/:product_id" => "carted_products#create"
   delete "/carted_products/:id" => "carted_products#destroy"
 
+  get "/categories/new" => "categories#new"
+  post "/categories" => "categories#create"
+
 end

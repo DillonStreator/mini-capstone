@@ -19,19 +19,17 @@
           <sub><b>Supplied by: </b><%= @product.supplier.name %></sub><br>
           <sub><b>Categories: </b></sub>
           <% @product.categories.each do |category| %>
-            <sub><a href="#"><%= category.name %></a></sub>
-          <% end %><br>
-          <sub><b>Categories: </b></sub>
-          <% @product.categories.each do |category| %>
-            <% if category == @product.categories[(@product.categories.size - 2)] %>
-              <sub><a href="#"><%= "#{category.name} " %></a> and </sub>
+            <% if @product.categories.size == 1 %>
+              <sub><a href="/products?category=<%= category.name %>"><%= "#{category.name} " %></a></sub>
+            <% elsif category == @product.categories[(@product.categories.size - 2)] %>
+              <sub><a href="/products?category=<%= category.name %>"><%= "#{category.name} " %></a> and </sub>
             <% elsif category == @product.categories[(@product.categories.size - 1)] %>
-              <sub><a href="#"><%= "#{category.name} " %></a></sub>
+              <sub><a href="/products?category=<%= category.name %>"><%= "#{category.name} " %></a></sub>
             <% else %>
-              <sub><a href="#"><%= "#{category.name} " %></a>, </sub>
+              <sub><a href="/products?category=<%= category.name %>"><%= "#{category.name} " %></a>, </sub>
             <% end %>
           <% end %><br>
-          <sub><b>Categories: </b><%= @product.list_categories %></sub>
+        <!--   <sub><b>Categories: </b><%= @product.list_categories %></sub> -->
         </div>
       </div>
       <div class="col-md-6">

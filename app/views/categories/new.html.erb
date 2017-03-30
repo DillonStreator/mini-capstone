@@ -1,0 +1,5 @@
+<h1>New Category</h1>
+<%= form_tag "/categories", method: :post do %>
+  Name: <input class="form-control" type="text" placeholder="Enter name of category" name="name">
+  <input class="btn btn-default" type="submit" value="Add Category">
+<% end %>

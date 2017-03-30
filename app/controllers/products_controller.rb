@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
       @products = Product.all.order(sort_input => sort_order)
     end
     render "products.html.erb"
-
   end
 
   def new

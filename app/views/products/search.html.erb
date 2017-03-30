@@ -8,11 +8,9 @@
   <% three_products.each do |product|%>
     <div class="col-md-4">
       <div class="well">
-        <h1><%= "#{product.name}" %></h1>
-        <a href="/show/<%= product.id %>">
-          <img class="product-image" src=<%= product.images[0].url %> name=<%= product.id%>>
-        </a>
+        <a href="/show/<%= product.id %>"><h1><%= "#{product.name}" %></h1></a>
         <p><%= product.description %></p>
+        <img class="product-image" src=<%= product.images[0].url %> name=<%= product.id%>>
       </div>
     </div>
   <% end %>

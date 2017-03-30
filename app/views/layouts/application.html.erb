@@ -62,6 +62,8 @@
                 <% Category.all.each do |category| %>
                   <li><a href="/products?category=<%= category.name %>"><%= category.name %></a></li>
                 <% end %>
+                <li role="separator" class="divider"></li>
+                <li><a href="/categories/new">Add category</a></li>
               </ul>
             </li>
           </ul>
