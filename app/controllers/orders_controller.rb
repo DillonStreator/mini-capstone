@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
     @orders = Order.where(user_id: current_user.id).order(created_at: 'desc')
-
     render "index.html.erb"
   end
 

@@ -2,7 +2,7 @@
 <% @carted_products.each do |carted_product| %>
   <div class="cart-index">
     <div class="well">
-      <img style="height:50px; width:50px;" src=<%= carted_product.product.images[0].url %>>
+      <img  style="height:50px; width:50px;" src=<%= carted_product.product.images[0].url %>>
       <b><a href="/show/<%= carted_product.product.id %>"><%= carted_product.product.name %></a></b>,
       Quantity: <%= carted_product.quantity %>,
       Price: $<%= carted_product.product.price %>

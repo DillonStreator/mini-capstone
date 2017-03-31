@@ -1,4 +1,8 @@
 class CartedProductsController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :authenticate_admin!, except: [:create, :index]
+
   def index
     if CartedProduct.where("status = ? AND user_id = ?", "carted", current_user.id).size == 0
       flash[:danger] = "You have no items in your cart! Go ahead and add some."
@@ -28,8 +32,8 @@ class CartedProductsController < ApplicationController
         redirect_to "/products"
       end
     else
-      flash[:danger] = "You are not signed in.."
-      redirect_to "/login"
+      flash[:danger] = %Q[You must <a href="/signup">sign up</a>/<a href="login">sign in</a> to add items to your cart.]
+      redirect_to "/"
     end
   end
 
