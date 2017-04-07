@@ -1,5 +1,5 @@
 <a href="/products">back to all products</a><br>
-<a href="/show/<%= params[:id] %>">back to show <%= @product.name %></a>
+<a href="/products/<%= params[:id] %>">back to show <%= @product.name %></a>
 <h1>Edit product</h1>
 
 <%= form_tag "/products/#{@product.id}?update_type=product", method: :patch do %>
@@ -13,7 +13,7 @@
   Product description <input type="text" class="form-control" value="<%= @product.description %>" name="product_description">
 </div>
 <div>
-  <a href="/product/<%=@product.id%>/edit?edit_type=image">Edit images</a>
+  <a class="btn btn-default" href="/images/<%=@product.id%>/edit">Edit images</a>
 </div>
 <div class="well-1">
   Supplier: <%= @supplier.name %><br>

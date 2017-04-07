@@ -1,6 +1,6 @@
 <h1>All products</h1>
-<%= form_tag "/products/search" , method: :post do %>
-  <input type="text" class="form-control" placeholder="search by first or last name" name="search_name">
+<%= form_tag "/products" , method: :get do %>
+  <input type="text" class="form-control" placeholder="search by first or last name" name="search">
   <input type="submit" class="btn btn-default" value="Search">
 <% end %>
 <% @products.each_slice(3) do |three_products| %>
@@ -8,7 +8,7 @@
     <% three_products.each do |product|%>
       <div class="col-md-4">
         <div  class="well">
-          <a href="/show/<%= product.id %>" name=<%= product.id %>>
+          <a href="/products/<%= product.id %>" name=<%= product.id %>>
             <h1><%= "#{product.name}" %></h1>
           </a>
           <p><%= product.description %></p>

@@ -1,6 +1,5 @@
 class CartedProductsController < ApplicationController
-
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :create
   before_action :authenticate_admin!, except: [:create, :index]
 
   def index
@@ -17,9 +16,13 @@ class CartedProductsController < ApplicationController
       if CartedProduct.find_by(status: 'carted', user_id: current_user.id, product_id: params[:product_id])
         carted_product = CartedProduct.find_by(status: 'carted', user_id: current_user.id, product_id: params[:product_id])
         carted_product.quantity = carted_product.quantity.to_i + params[:quantity].to_i
-        carted_product.save
-        flash[:success] = "successfully updated quantity of existing product in cart!"
-        redirect_to "/products"
+        if carted_product.save
+          flash[:success] = "successfully updated quantity of existing product in cart!"
+          redirect_to "/products"
+        else
+          flash[:danger] = "Quantity can't be less than 1."
+          redirect_to "/products/#{params[:product_id]}"
+        end
       else
         carted_product = CartedProduct.new(
           quantity: params[:quantity],
@@ -27,9 +30,13 @@ class CartedProductsController < ApplicationController
           product_id: params[:product_id],
           status: "carted"
         )
-        carted_product.save
-        flash[:success] = "successfully new product to cart!"
-        redirect_to "/products"
+        if carted_product.save
+          flash[:success] = "successfully new product to cart!"
+          redirect_to "/products"
+        else
+          flash[:danger] = "Quantity can't be less than 1."
+          redirect_to "/products/#{params[:product_id]}"
+        end
       end
     else
       flash[:danger] = %Q[You must <a href="/signup">sign up</a>/<a href="login">sign in</a> to add items to your cart.]

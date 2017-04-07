@@ -1,21 +1,22 @@
+<a href="/products/<%= @product.id %>/edit?edit_type=product">back to edit <%= @product.name %></a>
 <h1>Edit images</h1>
 <% @images.each do |image| %>
   <div>
-    Product image(url): <input type="text" class="form-control" value="<%= image.url %>" name="url">
-    <%= form_tag "/products/#{image.id}?update_type=image", method: :patch do %>
+    <%= form_tag "/images/#{image.id}", method: :patch do %>
+      Product image(url): <input type="text" class="form-control" value="<%= image.url %>" name="url">
       <input type="submit" class="btn btn-default" value="update image">
     <% end %>
     <img src=<%= image.url %> style="height:100px;width:100px;">
-    <%= form_tag "/products/#{image.id}?destroy_type=image", method: :delete do %>
+    <%= form_tag "/images/#{image.id}", method: :delete do %>
       <input type="submit" value="delete">
     <% end %>
   </div><br>
 <% end %>
 <h1>Add image</h1>
-<%= form_tag "/products/create_image?id=#{params[:id]}", method: :post do %>
+<%= form_tag "/images/create", method: :post do %>
   <div>
     Product image(url): <input type="text" class="form-control" name="url">
   </div>
+  <input type="hidden" name="id" value=<%= @product.id %>>
   <input type="submit" class="btn btn-default" value="Add image">
 <% end %>
-<a href="/product/<%= @product.id %>/edit?edit_type=product">back to edit <%= @product.name %></a>

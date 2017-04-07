@@ -4,14 +4,20 @@ Rails.application.routes.draw do
   get "/products/new" => "products#new"
   post "/products/create_product" => "products#create_product"
   post "/products/create_supplier" => "products#create_supplier"
-  post "/products/create_image" => "products#create_image"
-  get "/show/:id" => "products#show"
+  get "/products/:id" => "products#show"
   get "/products/:id/edit" => "products#edit"
   patch "/products/:id" => "products#update"
   delete "/products/:id" => "products#destroy"
+
   post "/products/search" => "products#search"
   get "/products/discounts" => "products#discounts"
   get "/products/randomproduct" => "products#random_product"
+
+  get "/images/new" => "images#new"
+  get "/images/:id/edit" => "images#edit"
+  post "/images/create" => "images#create"
+  delete "/images/:id" => "images#destroy"
+  patch "/images/:id" => "images#update"
 
   get "/signup" => "users#new"
   post "/users" => "users#create"

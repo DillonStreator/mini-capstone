@@ -35,8 +35,11 @@
         <div class="col-md-6">
           <div style="float:right; width: 100%; min-height:100px;" class="well">
             <% if current_user && current_user.admin == 1 %>
-              <a class="btn btn-default" href="/products/new?new_type=image&id=<%=@product.id%>">Add image</a><br>
-              <a class="btn btn-default" href="/products/<%=@product.id%>/edit?edit_type=product">Edit product</a><br>
+              <%= form_tag "/images/new", method: :get do %>
+                <input type="hidden" name="id" value=<%= @product.id %>>
+                <input class="btn btn-default" type="submit" value="Add image">
+              <% end %>
+              <a class="btn btn-default" href="/products/<%=@product.id%>/edit">Edit product</a><br>
               <%= form_tag "/products/#{@product.id}", method: :delete do %>
                 <input class="btn btn-default" type="submit" value="Delete Product">
               <% end %>

@@ -1,12 +1,14 @@
 <h1>My Cart</h1>
 <% @carted_products.each do |carted_product| %>
   <div class="cart-index">
-    <div class="well">
+    <div class="well" style="width:480px;">
       <img  style="height:50px; width:50px;" src=<%= carted_product.product.images[0].url %>>
-      <b><a href="/show/<%= carted_product.product.id %>"><%= carted_product.product.name %></a></b>,
+      <b><a href="/products/<%= carted_product.product.id %>"><%= carted_product.product.name %></a></b>,
       Quantity: <%= carted_product.quantity %>,
       Price: $<%= carted_product.product.price %>
+      <div class="btn btn-default" style="float:right;">
       <%= link_to "Delete", "/carted_products/#{carted_product.id}", method: :delete %>
+      </div>
     </div>
   </div>
 <% end %>
